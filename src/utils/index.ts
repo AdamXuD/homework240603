@@ -13,7 +13,7 @@ export async function loadDataFile(cvFilePath: string, url: string) {
 export async function loadHaarModels() {
   const frontalfaceReq = loadDataFile(
     'haarcascade_frontalface_default.xml',
-    '/static/haarcascade_frontalface_default.xml'
+    'https://static.adamxud.com/haarcascade_frontalface_default.xml'
   ).then(
     () =>
       new Promise((resolve) => {
@@ -24,7 +24,10 @@ export async function loadHaarModels() {
         }, 2000)
       })
   )
-  const smileReq = loadDataFile('haarcascade_smile.xml', '/static/haarcascade_smile.xml').then(
+  const smileReq = loadDataFile(
+    'haarcascade_smile.xml',
+    'https://static.adamxud.com/haarcascade_smile.xml'
+  ).then(
     () =>
       new Promise((resolve) => {
         setTimeout(() => {
