@@ -82,6 +82,7 @@ watch(file, () => {
     uploadImageElem.value.src = URL.createObjectURL(file.value)
     isHappy.value = await detectHappy(uploadImageElem.value)
   })
+  console.log(!!file.value)
 })
 </script>
 
@@ -134,11 +135,11 @@ watch(file, () => {
               <p class="text-xl mt-4">点击开启摄像头，是否继续？</p>
             </div>
           </div>
-          <div v-else class="flex flex-col items-stretch">
+          <div v-else class="flex-1 min-h-0 flex flex-col items-stretch">
             <div
               class="flex-1 min-h-0 flex flex-col items-center p-4 mb-4 rounded-lg outline-dashed outline-white"
             >
-              <video ref="cameraVideoElem" class="object-contain rounded-lg"></video>
+              <video ref="cameraVideoElem" class="h-full object-contain rounded-lg"></video>
             </div>
             <ul class="flex items-center justify-start font-bold">
               <li
@@ -167,7 +168,7 @@ watch(file, () => {
             v-if="file"
             class="mb-8 flex-1 w-full min-h-0 overflow-hidden flex flex-col items-center p-4 rounded-lg outline-dashed outline-white"
           >
-            <img ref="uploadImageElem" class="w-full h-full object-contain rounded-lg" alt="图片" />
+            <img ref="uploadImageElem" class="h-full object-contain rounded-lg" alt="图片" />
           </div>
           <div
             class="flex justify-center items-center w-full outline-dashed outline-white rounded-lg cursor-pointer"
@@ -185,10 +186,7 @@ watch(file, () => {
               class="text-white flex justify-center items-center"
               :class="!file ? 'flex-col' : 'flex-row'"
             >
-              <i
-                class="text-9xl bi bi-box-arrow-up"
-                :class="!file ? 'text-9xl mb-8' : 'text-4xl mr-4'"
-              ></i>
+              <i class="bi bi-box-arrow-up" :class="!file ? 'text-9xl mb-8' : 'text-4xl mr-4'"></i>
               <p class="text-xl">点击此处上传文件！</p>
             </div>
           </div>
