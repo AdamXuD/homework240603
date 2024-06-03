@@ -2,6 +2,11 @@
 import { ref, watch, nextTick } from 'vue'
 import { detectHappy, loadHaarModels } from './utils'
 
+const viewportHeight = ref(window.innerHeight + 'px')
+window.addEventListener('resize', () => {
+  viewportHeight.value = window.innerHeight + 'px'
+})
+
 const menuList = ['Camera', 'Upload']
 const activeItem = ref(menuList[0])
 
@@ -81,7 +86,10 @@ watch(file, () => {
 </script>
 
 <template>
-  <div class="h-full w-full md:w-2/3 mx-auto flex flex-col items-stretch">
+  <div
+    class="h-full w-full md:w-2/3 mx-auto flex flex-col items-stretch overflow-hidden"
+    :style="{ height: viewportHeight }"
+  >
     <h1 class="text-3xl px-8 py-8 text-center">
       {{ isHappy ? 'Good Smile 😇' : 'Please Smile 😊' }}
     </h1>
